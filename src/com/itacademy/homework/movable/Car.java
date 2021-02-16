@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Objects;
 
-public abstract class Car implements Movable {
+public class Car extends Thread implements Movable {
 
   private String name;
   private int carNumber;
@@ -13,7 +13,7 @@ public abstract class Car implements Movable {
   private CarModel carModel;
   private boolean isMoving;
 
-  protected Car() {
+  public Car() {
   }
 
   protected Car(String name, int carNumber, Calendar releaseDate, CarModel carModel,
@@ -35,9 +35,9 @@ public abstract class Car implements Movable {
     return result;
   }
 
-  public String getName() {
-    return name;
-  }
+//  public String getName() {
+//    return name;
+//  }
 
   public int getCarNumber() {
     return carNumber;
@@ -93,5 +93,27 @@ public abstract class Car implements Movable {
         .append('}');
     return stringBuilder.toString();
 
+  }
+
+  @Override
+  public void run() {
+    for (int i = 0; i < 5; i++) {
+      System.out.println("the car drove lap: " + i);
+      try {
+        Thread.sleep(1500);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+
+  @Override
+  public void toMove() {
+
+  }
+
+  @Override
+  public int getPrice() {
+    return 0;
   }
 }

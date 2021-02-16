@@ -9,7 +9,6 @@ public class HomoSapiens implements Movable {
   public HomoSapiens(String name, int price) {
     this.name = name;
     this.price = price;
-
   }
 
   public HomoSapiens(String name, int price, String eyeColor) {

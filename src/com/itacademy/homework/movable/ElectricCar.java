@@ -20,41 +20,50 @@ public class ElectricCar extends Car {
     this.isClosed = isClosed;
     this.price = price;
     this.tempUnderTheSeat = tempUnderTheSeat;
+  }
 
+  public ElectricCar(int butteryLevelPercentage, int price, int tempUnderTheSeat) {
+    this.butteryLevelPercentage = butteryLevelPercentage;
+    this.price = price;
+    this.tempUnderTheSeat = tempUnderTheSeat;
   }
 
   public void printMissingCharge() {
-    if (butteryLevelPercentage < MAX_PERCENT) {
-      System.out.println(
-          "The required additional charge level is " + (MAX_PERCENT - butteryLevelPercentage)
-              + " %");
-    } else {
-      System.out.println("Battery fully charged. ");
+    synchronized (this) {
+      if (butteryLevelPercentage < MAX_PERCENT) {
+        System.out.println(
+            "The required additional charge level is " + (MAX_PERCENT - butteryLevelPercentage)
+                + " %");
+        System.out.println("I'm synchronized block!");
+      } else {
+        System.out.println("Battery fully charged. ");
+
+      }
     }
   }
 
-  public void printMissingCharge(int levelPercent) {
-    if (butteryLevelPercentage < levelPercent) {
-      System.out.println(
-          "The required additional charge level is " + (levelPercent - butteryLevelPercentage)
-              + " %");
-    } else {
-      System.out.println("Battery fully charged. ");
-    }
-  }
+//  public void printMissingCharge(int levelPercent) {
+//    if (butteryLevelPercentage < levelPercent) {
+//      System.out.println(
+//          "The required additional charge level is " + (levelPercent - butteryLevelPercentage)
+//              + " %");
+//    } else {
+//      System.out.println("Battery fully charged. ");
+//    }
+//  }
 
-  public void close() {
-    isClosed = true;
-    System.out.println("Electric car is closed.");
-  }
+//  public void close() {
+//    isClosed = true;
+//    System.out.println("Electric car is closed.");
+//  }
 
-  public int getButteryLevelPercentage() {
-    return butteryLevelPercentage;
-  }
+//  public int getButteryLevelPercentage() {
+//    return butteryLevelPercentage;
+//  }
 
-  public boolean isClosed() {
-    return isClosed;
-  }
+//  public boolean isClosed() {
+//    return isClosed;
+//  }
 
   @Override
   public int getPrice() {

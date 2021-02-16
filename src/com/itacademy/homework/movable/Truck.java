@@ -18,6 +18,10 @@ public class Truck extends Car {
     this.price = price;
   }
 
+  public Truck(int price) {
+    this.price = price;
+  }
+
   public void cargoLoading() {
     System.out.println("Loading load is completed!");
   }
